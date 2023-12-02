@@ -1,16 +1,23 @@
 import { Add } from "@mui/icons-material";
 import  TextFieldCustom from "../atoms/TextFieldCustom";
 import  ButtonCustom from "../atoms/ButtonCustom";
-import { useForm,useWatch,useFieldArray } from 'react-hook-form';
+import { useFieldArray, useFormContext  } from 'react-hook-form';
 
 export const AddProduct = () => {
     const { fields, append } = useFieldArray({
         name: 'mapTable',
       });    
-    console.log("🚀 ~ file: AddProduct.jsx:11 ~ AddProduct ~ fields:", fields)
-
+      console.log("🚀 ~ file: AddProduct.jsx:11 ~ AddProduct ~ fields:", fields)
+      const { getValues, resetField } = useFormContext();
+      
       const addProduct = ()=>{
-        append( { id: fields.length, product: 'John Doe', productDescription: '123',unitMeasure:'lb' , price:'1.2' })
+        const {product, productDescription,unitMeasure, price} = getValues();
+        append( { id: fields.length + 1, product, productDescription,unitMeasure, price });
+
+        resetField("product")
+        resetField("productDescription")
+        resetField("unitMeasure")
+        resetField("price")
       }
     return (
         <div className="p-2 flex items-center space-x-4">

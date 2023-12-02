@@ -10,7 +10,7 @@ import upArrowActive from '../../assets/icons-scrollbar/upArrow-active.svg';
 import downArrow from '../../assets/icons-scrollbar/downArrow.svg';
 import downArrowActive from '../../assets/icons-scrollbar/downArrow-active.svg';
 import downArrowHover from '../../assets/icons-scrollbar/downArrow-hover.svg';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 function TableCustom({columns,nameArray}) {
 

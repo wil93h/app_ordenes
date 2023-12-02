@@ -11,11 +11,10 @@ const formSchema = object({
     customerLastName: string().required("El apellido es requerido"),
     customerAddress: string().required("La dirección es requerido"),
     price: number()
-        .positive("El valor debe de ser positivo")
-        .required("El precio es requerido"),
-    product: string().required("El nombre del producto es requerido"),
+        .positive("El valor debe de ser positivo"),
+    product: string(),
     productDescription: string(),
-    unitMeasure: string().required("La unidad de medida es requerido"),
+    unitMeasure: string(),
     mapTable: array().of(object({
       id: number().required('El ID es requerido'),
       product: string().required('El producto es requerido'),
@@ -30,7 +29,7 @@ export const PurchaseOrders = () => {
         defaultValues: { mapTable: [] },
     });
     const sendData = () => {
-      console.log('send')
+      console.log('send',methods.getValues())
     }
     return (
         <BoxMain>
