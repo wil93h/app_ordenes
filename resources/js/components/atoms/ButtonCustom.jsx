@@ -2,7 +2,7 @@ import { getColor } from "../../utilities";
 import { Button }  from "@mui/material"
 import { styled } from '@mui/material/styles';
 
-const ButtonCustom = ({ label, handle, startIcon ,endIcon ,colorChoose=1,disabled, classN="",max,min}) => {
+const ButtonCustom = ({ label, handle, startIcon ,type="button" ,endIcon ,colorChoose=1,disabled, classN="",max,min}) => {
 
   const {
     bgColor,
@@ -64,8 +64,8 @@ const ButtonCustom = ({ label, handle, startIcon ,endIcon ,colorChoose=1,disable
     variant="contained" 
     onClick = {handle}
     startIcon={startIcon}
+    type={type}
     endIcon={endIcon}
-    type="submit"
     className={classN}
     sx={{ maxWidth: max, minWidth:min}}
     >

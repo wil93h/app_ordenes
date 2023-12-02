@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardContent, CardHeader, CardMedia, styled, Typography } from "@mui/material"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import IconSolicitudes from '../../assets/IconSolicitudes.svg'
+import { NotAccessible } from "@mui/icons-material";
 
 const StyledCard = styled(Card)`
   ${({theme}) => `
@@ -15,7 +15,7 @@ const StyledCard = styled(Card)`
   `}
 `;
 
-function CardCustom({ img = IconSolicitudes, title = 'ERROR', handle }) {
+function CardCustom({ img = NotAccessible, title = 'ERROR', handle }) {
   return (
     <div className="flex items-center justify-center content-center go-corner">
       <StyledCard onClick={handle} className="cursor-pointer w-full lg:mx-8 md:mx-8 my-2 max-h-[350px] min-h-[350px] max-w-[350px] min-w-[200px]  md:grid-cols-2 xs:grid xs:grid-cols-5 xs:min-h-[60px] xs:max-w-[300px] xs:min-w-[300px]">

@@ -5,10 +5,11 @@ import { PublicRoutes } from "./models";
 import { RoutesWithNotFound } from "./utilities";
 import { Helmet } from "react-helmet";
 import { Orders } from "./pages/Orders/Orders"
+import { Dashboard } from "./pages/Dashboard/Dashboard";
+
 // const Orders = lazy( ()=> import('./pages/Orders/Orders'));
 // import ExampleComponent from './components/ExampleComponent';
 ReactDOM.render(
-    <StrictMode>
         <>
         <Helmet>
             <title>Menú</title>
@@ -19,7 +20,7 @@ ReactDOM.render(
                     <RoutesWithNotFound>
                         <Route
                             path="/"
-                            element={<h1>hola dash</h1>}
+                            element={ <Dashboard/> }
                         />
                         <Route
                             path={`${PublicRoutes.ORDER}/*`}
@@ -28,7 +29,6 @@ ReactDOM.render(
                     </RoutesWithNotFound>
             </BrowserRouter>
         </Suspense>
-        </>
-    </StrictMode>,
+        </>,
     document.getElementById("root")
 );
