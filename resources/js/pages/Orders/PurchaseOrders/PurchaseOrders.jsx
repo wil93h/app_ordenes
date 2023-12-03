@@ -6,6 +6,7 @@ import  CreateOrder  from "../../../components/template/CreateOrder";
 import  api  from "../../../services/api";
 import { Box1024, BoxMain } from "../../../components";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 
 
 const formSchema = object({
@@ -31,9 +32,25 @@ export const PurchaseOrders = () => {
         defaultValues: { mapTable: [] },
     });
     const sendData = async() => {
+        Swal.fire({
+            title: `<h1 style="color:#E0E5F1" >GUARDANDO ORDEN</h1>`,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            background:'#3C4557'
+        })
+
         const result =  await api.post('/order', methods.getValues())
         console.log('send',methods.getValues(),result)
         methods.reset();
+        Swal.fire({
+            title: `<h1 style="color:#E0E5F1" >${result.data?.message}</h1>`,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 4000,
+            background:'#3C4557'
+        });
     }
     return (
         <>
