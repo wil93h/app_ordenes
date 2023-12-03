@@ -36,17 +36,7 @@ export const ViewPurchaseOrders = () => {
     methods.setValue('arrayOrder',value.orders);
     methods.setValue('arrayCustomer',value.customerGroup);
   }, [])
-  
-    console.log("🚀 ~ file: ViewPurchaseOrders.jsx:25 ~ ViewPurchaseOrders ~ values:", purchaseDetails)
-  
 
-
-    const  sendData = async() => {
-        
-        console.log('send',methods.getValues())
-        // methods.reset();
-        
-    }
     return (
         <>
         <Helmet>
@@ -56,7 +46,7 @@ export const ViewPurchaseOrders = () => {
         <BoxMain>
             <Box1024>
                 <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit(sendData)} className="w-full h-full flex flex-col justify-center items-center" autoComplete="off">
+                <form className="w-full h-full flex flex-col justify-center items-center" autoComplete="off">
                     <Orders/>
                 </form>
                 </FormProvider>

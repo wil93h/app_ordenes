@@ -12,7 +12,7 @@ import downArrowActive from '../../assets/icons-scrollbar/downArrow-active.svg';
 import downArrowHover from '../../assets/icons-scrollbar/downArrow-hover.svg';
 import { Controller } from 'react-hook-form';
 
-function TableCustom({columns,nameArray}) {
+function TableCustom({columns,nameArray,selection}) {
 
   const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     borderColor:Colors['COLOR-BIRO-BLUE'],
@@ -145,6 +145,7 @@ function TableCustom({columns,nameArray}) {
         getRowClassName = {(params) => `super-app-theme--${params.row.status}`}
         rows={ value } 
         columns={columns}
+        onCellClick={selection}
       />
     </Box>
           )

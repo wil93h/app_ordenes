@@ -1,8 +1,8 @@
 import { useFormContext } from "react-hook-form";
-import TableCustomSelect from "../atoms/TableCustomSelect";
 import { BoxForm } from "../html/div"
 import { ModalProducts } from "../organisms/ModalProducts";
 import { H1Title } from "../html/font";
+import TableCustom from "../atoms/TableCustom";
 
 const columns =  
 [
@@ -30,7 +30,7 @@ export const Orders = () => {
             <H1Title 
                 label="ORDENES"
             />
-            <TableCustomSelect
+            <TableCustom
                 columns = {columns}
                 nameArray="arrayCustomer"
                 selection = {selection}
