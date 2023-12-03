@@ -29,7 +29,7 @@ export const Dashboard = () => {
         <BoxMain>
             <Box1024>
                 <BoxForm>
-                    <H1Title label={"MENÚ"} />
+                    <H1Title label={"APLICACIÓN DE ORDENES"} />
                     <div className="flex p-4 xs:!py-12">
                         <div className="w-full grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-1 ">
                             {CARD_SOLICITUDES.map((card) => (
