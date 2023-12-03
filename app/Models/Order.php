@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+
     protected $connection = 'mysql';
     protected $table = 'orders';
+
 }

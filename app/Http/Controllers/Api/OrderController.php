@@ -18,9 +18,37 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return "Hola";
+
+        $allData = Order::
+        select('o.id','p.name as product', 'c.last_name as customer_last_name','p.description','p.price','c.name as customer_name','c.address')
+        ->from('orders as o')
+        ->leftJoin('purchase_order_details as pod','o.id','=','pod.order_id')
+        ->leftJoin('products as p','p.id','=','pod.product_id')
+        ->leftJoin('customers as c','c.id','=','pod.customer_id')
+        ->whereNotNull(['o.id','c.id','p.id'])
+        ->get()
+        ->toArray()
+        ;
+        $dataByOrder = [];
+        $arrayOnlyOrder = Order::get()->toArray();
+        foreach ($arrayOnlyOrder as $value) {
+            $orderArray = array_filter($allData , function ($obj) use($value) {
+                return $obj['id'] == $value['id'];
+            });
+            if(count($orderArray)>0){
+                array_push($dataByOrder,...[$value['id'] => array_values($orderArray)]);
+            }
+        }
+
+        return response()->json(
+            [
+                "status" => 200,
+                "message" => "ORDENES",
+                "data" => $dataByOrder,
+            ], 200
+        );
     }
 
     /**

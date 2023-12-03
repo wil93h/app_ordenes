@@ -30,7 +30,7 @@ export const PurchaseOrders = () => {
         resolver: yupResolver(formSchema),
         defaultValues: { mapTable: [] },
     });
-    const  sendData = async() => {
+    const sendData = async() => {
         const result =  await api.post('/order', methods.getValues())
         console.log('send',methods.getValues(),result)
         methods.reset();

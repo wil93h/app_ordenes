@@ -11,4 +11,8 @@ class Product extends Model
     protected $connection = 'mysql';
     protected $table = 'products';
     protected $fillable = ['name', 'description', 'price', 'unit_measure'];
+    
+    public function purchaseDetail(){
+        return $this->belongsToMany(Product::class, PurchaseOrderDetail::class,'id', 'product_id');
+    }
 }
