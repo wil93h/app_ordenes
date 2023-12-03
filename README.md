@@ -30,4 +30,4 @@ DB_CONNECTION=mysql DB_HOST=127.0.0.1 DB_PORT=3306 DB_DATABASE=ordenes_db DB_USE
 11. Compilar los archivos de frontend con el comando `npm run dev`. Este comando genera los archivos CSS y JS que se usan para el diseño y la interacción de la aplicación.
 
 ## Uso
-Para usar la aplicación se debe acceder a la URL `http://localhost:8000` desde el navegador. Allí se podrá ver la interfaz de la aplicación, que permite crear, editar, eliminar y consultar las órdenes de compra y venta de productos.
+Para usar la aplicación se debe acceder a la URL `http://localhost:8000` desde el navegador. Allí se podrá ver la interfaz de la aplicación, que permite crear y consultar las órdenes de compra y venta de productos.
