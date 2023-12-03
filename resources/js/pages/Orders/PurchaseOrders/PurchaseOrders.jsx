@@ -3,6 +3,7 @@ import { array, date, object, SchemaOf, string, number } from "yup";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import  CreateOrder  from "../../../components/template/CreateOrder";
+import  api  from "../../../services/api";
 import { Box1024, BoxMain } from "../../../components";
 
 
@@ -28,8 +29,9 @@ export const PurchaseOrders = () => {
         resolver: yupResolver(formSchema),
         defaultValues: { mapTable: [] },
     });
-    const sendData = () => {
-      console.log('send',methods.getValues())
+    const  sendData = async() => {
+       const result =  await api.post('/order', methods.getValues())
+      console.log('send',methods.getValues(),result)
     }
     return (
         <BoxMain>
