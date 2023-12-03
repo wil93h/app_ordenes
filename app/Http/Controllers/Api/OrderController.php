@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\PurchaseOrderDetail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,12 +43,36 @@ class OrderController extends Controller
             'customerAddress' => 'required|string|max:250',
         ]);
 
+        $order = Order::create();
+        $customer = Customer::create(
+            [
+                'name' => $request['customerName'],
+                'last_name' => $request['customerLastName'],
+                'address' => $request['customerAddress'],
+            ]
+        );
+        $products = [];
+        foreach ($request['mapTable'] as $product) {
+            $saveProduct = Product::create([
+                'name' => $product['product'],
+                'description' => $product['productDescription'],
+                'price' => $product['price'],
+                'unit_measure' => $product['unitMeasure'],
+            ]);
+            PurchaseOrderDetail::create([
+                'customer_id' => $customer->id,
+                'product_id' => $saveProduct->id,
+                'order_id' => $order->id,
+            ]);
+            array_push($products,$saveProduct);
+        }
+
         
         return response()->json(
             [
                 "status" => 200,
-                "message" => $request->customerName,
-                "data" => [],
+                "message" => "ORDEN GUARDADA EXITOSAMENTE",
+                "data" => $products,
             ], 200
         );
     } catch (\Throwable $e) {

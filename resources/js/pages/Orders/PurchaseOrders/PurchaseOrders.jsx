@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import  CreateOrder  from "../../../components/template/CreateOrder";
 import  api  from "../../../services/api";
 import { Box1024, BoxMain } from "../../../components";
+import { Helmet } from "react-helmet";
 
 
 const formSchema = object({
@@ -30,10 +31,16 @@ export const PurchaseOrders = () => {
         defaultValues: { mapTable: [] },
     });
     const  sendData = async() => {
-       const result =  await api.post('/order', methods.getValues())
-      console.log('send',methods.getValues(),result)
+        const result =  await api.post('/order', methods.getValues())
+        console.log('send',methods.getValues(),result)
+        methods.reset();
     }
     return (
+        <>
+        <Helmet>
+            <title>ordenes de compra</title>
+            <link rel="icon" href="/assets/create-order.svg" type="image/svg+xml" />
+        </Helmet>
         <BoxMain>
             <Box1024>
                 <FormProvider {...methods}>
@@ -43,5 +50,6 @@ export const PurchaseOrders = () => {
                 </FormProvider>
             </Box1024>
         </BoxMain>
+        </>
     );
 };

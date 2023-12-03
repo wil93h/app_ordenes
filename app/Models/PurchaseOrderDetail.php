@@ -10,4 +10,5 @@ class PurchaseOrderDetail extends Model
     use HasFactory;
     protected $connection = 'mysql';
     protected $table = 'purchase_order_details';
+    protected $fillable = ['customer_id', 'product_id', 'order_id'];
 }

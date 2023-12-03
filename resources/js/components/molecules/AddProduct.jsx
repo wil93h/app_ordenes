@@ -20,7 +20,7 @@ export const AddProduct = () => {
         resetField("price")
       }
     return (
-        <div className="p-2 flex items-center space-x-4">
+        <div className="p-2 my-5 flex items-center space-x-4">
             <div className="w-3/12">
             <TextFieldCustom
                 label="PRODUCTO"

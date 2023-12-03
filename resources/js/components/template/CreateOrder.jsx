@@ -4,6 +4,7 @@ import AddProduct from "../molecules/AddProduct"
 import AddCustomer from "../molecules/AddCustomer"
 import ButtonCustom  from "../atoms/ButtonCustom";
 import TableCustom  from "../atoms/TableCustom";
+import { H1Title } from "../html/font";
 
 export const CreateOrder = () => {
   
@@ -18,6 +19,10 @@ export const CreateOrder = () => {
     
     return (
     <BoxForm>
+        <H1Title
+          label={"ORDEN DE COMPRA"}
+          
+        />
         <AddCustomer/>
         <AddProduct/>
         <TableCustom
@@ -27,6 +32,7 @@ export const CreateOrder = () => {
         <ButtonCustom
           label="GUARDAR"
           type="submit"
+          classN="p-2 mt-5"
         />
     </BoxForm>
     
