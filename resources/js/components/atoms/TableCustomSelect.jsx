@@ -131,8 +131,6 @@ function TableCustomSelect({columns,nameArray,selection}) {
     }, 
   }));
 
-  
-
   return (
     <Controller
       name={nameArray}
@@ -147,11 +145,7 @@ function TableCustomSelect({columns,nameArray,selection}) {
         getRowClassName = {(params) => `super-app-theme--${params.row.status}`}
         rows={ value } 
         columns={columns}
-        onCellClick={(event) => {
-          console.log("🚀 ~ file: TableCustomSelect.jsx:149 ~ TableCustomSelect ~ event:", event)
-
-          
-        }}
+        onCellClick={selection}
       />
     </Box>
           )

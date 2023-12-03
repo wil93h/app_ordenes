@@ -14,13 +14,18 @@ const formSchema = object({
     customerAddress: string(),
     arrayOrder: array(),
     arrayCustomer: array(),
+    arrayProducts:array(),
     modal: boolean(),
 });
 export const ViewPurchaseOrders = () => {
 
   const methods = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: { arrayCustomer: [],modal:false },
+    defaultValues: { 
+      arrayCustomer: [],
+      arrayProducts:[],
+      modal:false,
+    },
   });
 
   const [purchaseDetails, setPurchaseDetails] = useState([])

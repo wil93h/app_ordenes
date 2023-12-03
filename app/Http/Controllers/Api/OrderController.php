@@ -22,7 +22,7 @@ class OrderController extends Controller
     {
 
         $allProducts = Order::
-        select('o.id','p.name as product', 'c.last_name as customer_last_name','p.description','p.price','c.name as customer_name','c.address')
+        select('pod.id as id','o.id as order_id','p.name as product','p.unit_measure' ,'c.last_name as customer_last_name','p.description','p.price','c.name as customer_name','c.address')
         ->from('orders as o')
         ->leftJoin('purchase_order_details as pod','o.id','=','pod.order_id')
         ->leftJoin('products as p','p.id','=','pod.product_id')
@@ -51,7 +51,7 @@ class OrderController extends Controller
         $arrayOnlyOrder = Order::get()->toArray();
         foreach ($arrayOnlyOrder as $value) {
             $orderArray = array_filter($allProducts , function ($obj) use($value) {
-                return $obj['id'] == $value['id'];
+                return $obj['order_id'] == $value['id'];
             });
             if(count($orderArray)>0){
                 array_push($dataByOrder,...[$value['id'] => array_values($orderArray)]);
