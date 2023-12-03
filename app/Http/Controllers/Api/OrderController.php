@@ -21,7 +21,7 @@ class OrderController extends Controller
     public function index(): JsonResponse
     {
 
-        $allData = Order::
+        $allProducts = Order::
         select('o.id','p.name as product', 'c.last_name as customer_last_name','p.description','p.price','c.name as customer_name','c.address')
         ->from('orders as o')
         ->leftJoin('purchase_order_details as pod','o.id','=','pod.order_id')
@@ -31,10 +31,26 @@ class OrderController extends Controller
         ->get()
         ->toArray()
         ;
+        $groupOrder = Order::
+        select('o.id', 
+        'c.last_name as customer_last_name',
+        DB::raw('SUM(p.price) as total_price'),
+        'c.name as customer_name',
+        'c.address')
+        ->from('orders as o')
+        ->leftJoin('purchase_order_details as pod','o.id','=','pod.order_id')
+        ->leftJoin('products as p','p.id','=','pod.product_id')
+        ->leftJoin('customers as c','c.id','=','pod.customer_id')
+        ->whereNotNull(['o.id','c.id','p.id'])
+        ->groupBy('o.id', 'c.last_name', 'c.name', 'c.address')
+        ->get()
+        ->toArray()
+        ;
+
         $dataByOrder = [];
         $arrayOnlyOrder = Order::get()->toArray();
         foreach ($arrayOnlyOrder as $value) {
-            $orderArray = array_filter($allData , function ($obj) use($value) {
+            $orderArray = array_filter($allProducts , function ($obj) use($value) {
                 return $obj['id'] == $value['id'];
             });
             if(count($orderArray)>0){
@@ -47,6 +63,7 @@ class OrderController extends Controller
                 "status" => 200,
                 "message" => "ORDENES",
                 "data" => $dataByOrder,
+                "order" => $groupOrder,
             ], 200
         );
     }

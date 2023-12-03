@@ -14,6 +14,6 @@ const viewPurchase = async() =>{
         ),data:res};
         orders.push(uniqueOrder);
     });
-    return orders;
+    return {orders,customerGroup:purchaseOrders.order};
 }
 export default viewPurchase;

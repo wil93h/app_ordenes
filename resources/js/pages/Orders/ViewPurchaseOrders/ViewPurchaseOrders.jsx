@@ -1,38 +1,44 @@
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import { array, date, object, SchemaOf, string, number } from "yup";
+import { FormProvider, useForm } from "react-hook-form";
+import { array, object, string, number, boolean } from "yup";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import  CreateOrder  from "../../../components/template/CreateOrder";
 import  viewPurchase  from "../../../services/viewPurchase";
 import { Box1024, BoxMain } from "../../../components";
+import Orders from "../../../components/template/Orders"
 import { Helmet } from "react-helmet";
-import ButtonCustom from "../../../components/atoms/ButtonCustom";
 import { useEffect, useState } from "react";
-
 
 const formSchema = object({
     customerName: string(),
     customerLastName: string(),
     customerAddress: string(),
-    
-    mapTable: array().of(object({
-      id: number(),
-      product: string(),
-      productDescription: string(),
-      unitMeasure: string(),
-      price: number(),
-    })),
+    arrayOrder: array(),
+    arrayCustomer: array(),
+    modal: boolean(),
 });
 export const ViewPurchaseOrders = () => {
-    const values = viewPurchase();
-    
-    const methods = useForm({
-        resolver: yupResolver(formSchema),
-        defaultValues: { mapTable: [] },
-    });
+
+  const methods = useForm({
+    resolver: yupResolver(formSchema),
+    defaultValues: { arrayCustomer: [],modal:false },
+  });
+
+  const [purchaseDetails, setPurchaseDetails] = useState([])
+
+  useEffect(async () => {
+    const value = await viewPurchase();
+    setPurchaseDetails(value);
+    methods.setValue('arrayOrder',value.orders);
+    methods.setValue('arrayCustomer',value.customerGroup);
+  }, [])
+  
+    console.log("🚀 ~ file: ViewPurchaseOrders.jsx:25 ~ ViewPurchaseOrders ~ values:", purchaseDetails)
+  
+
+
     const  sendData = async() => {
-        // const result =  await api.post('/order', methods.getValues())
-        // console.log('send',methods.getValues(),result)
+        
+        console.log('send',methods.getValues())
         // methods.reset();
         
     }
@@ -46,11 +52,7 @@ export const ViewPurchaseOrders = () => {
             <Box1024>
                 <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(sendData)} className="w-full h-full flex flex-col justify-center items-center" autoComplete="off">
-                    <ButtonCustom
-                      label="GUARDAR"
-                      type="submit"
-                      classN="p-2 mt-5"
-                    />
+                    <Orders/>
                 </form>
                 </FormProvider>
             </Box1024>

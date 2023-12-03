@@ -34,7 +34,7 @@ function CardCustom({ img = NotAccessible, title = 'ERROR', handle }) {
           />
         </div>
         <CardContent className="!py-4 !px-0 lg:!mx-8 md:!mx-12 xs:col-span-3 flex justify-center items-center xs:justify-start">
-          <Typography variant="h2" className="lg:!text-[24px] md:!text-[18px] sm:!text-[18px] !font-light text-biro-blue flex justify-center text-center xs:!text-[12px]">
+          <Typography variant="h2" className="lg:!text-[24px] md:!text-[18px] sm:!text-[18px] !font-light text-color-biro-blue flex justify-center text-center xs:!text-[12px]">
             {title}
           </Typography>
         </CardContent>
